@@ -1,0 +1,33 @@
+name: C/C++ CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v1
+    - name: configure
+      run: ./configure
+    - name: make
+      run: make
+    - name: make check
+      run: make check
+    - name: make distcheck
+      run: make distcheck
+#include <stdio.h>
+#include <math.h>
+int main(void) {
+	int i, j;
+	double a, n, sum = 0;;
+	scanf("%lf %lf", &a, &n);
+	for (i = 0; i < n; i++) {
+		sum = sum + a * pow(10, i);
+		for (j = 1; j < n - i; j++) {
+			sum = sum + a * (pow(10, j - 1));
+		}
+	}
+	printf("s = %.0lf", sum);
+}
